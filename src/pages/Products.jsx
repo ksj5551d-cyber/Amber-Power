@@ -2,48 +2,54 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
+// Import images for reliable path resolution on Vercel
+import solarWaterHeaterImg from '/images/products/solar_water_heater.png';
+import solarPVSystemImg from '/images/products/solar_pv_system.png';
+import heatPumpImg from '/images/products/heat_pump.png';
+import upsServiceImg from '/images/products/ups_service.png';
+
 const Products = () => {
   const products = [
     { 
       title: 'Solar Water Heater', 
       desc: 'Cost-saving hot water solutions with reliable performance and zero emissions.', 
-      image: '/images/products/solar_water_heater.png',
+      image: solarWaterHeaterImg,
       color: '#F97316' // orange
     },
     { 
       title: 'Solar Photovoltaic System', 
       desc: 'Complete high-efficiency solar power installations for sustainable long-term savings.', 
-      image: '/images/products/solar_pv_system.png',
+      image: solarPVSystemImg,
       color: '#EAB308' // yellow
     },
     { 
       title: 'Heat Pump', 
       desc: 'Advanced energy-efficient heating technology designed for reliable all-weather performance.', 
-      image: '/images/products/heat_pump.png',
+      image: heatPumpImg,
       color: '#3B82F6' // blue
     },
     { 
       title: 'UPS Sales & Service', 
       desc: 'Premium Uninterruptible Power Supply systems with comprehensive maintenance and expert support.', 
-      image: '/images/products/ups_service.png',
+      image: upsServiceImg,
       color: '#8B5CF6' // violet
     },
     { 
       title: 'Inverters', 
       desc: 'Smart, high-performance power backup systems with intelligent energy management features.', 
-      image: '/images/products/ups_service.png',
+      image: upsServiceImg,
       color: '#6366F1' // indigo
     },
     { 
       title: 'Batteries', 
       desc: 'Next-generation long-lasting energy storage solutions for residential and industrial use.', 
-      image: '/images/products/ups_service.png',
+      image: upsServiceImg,
       color: '#10B981' // emerald
     },
     { 
       title: 'Solar Panels', 
       desc: 'Clean, high-density energy generation modules using the latest photovoltaic technology.', 
-      image: '/images/products/solar_pv_system.png',
+      image: solarPVSystemImg,
       color: '#06B6D4' // cyan
     },
   ];
