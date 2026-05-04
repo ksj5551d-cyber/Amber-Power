@@ -8,12 +8,11 @@ import solarPanelsRooftop from '../assets/sliders/solar-panels-rooftop.jpg';
 import solarTechnicians from '../assets/sliders/solar-technicians.jpg';
 import renewableMain from '../assets/sliders/renewable-main.jpg';
 
-// Home Product Assets (Using high-quality assets already in src/assets/products)
-import solarWaterHeaterImg from '../assets/products/solar_water_heater.png';
-import solarPVSystemImg from '../assets/products/solar_pv_system.png';
-import heatPumpImg from '../assets/products/heat_pump.png';
-import upsServiceImg from '../assets/products/ups_service.png';
-// Placeholders for others until I can find/generate them
+// Home Product Assets
+import solarWaterHeaterLineup from '../assets/home-products/solar-water-heater-lineup.png';
+import solarPVSystemRender from '../assets/home-products/solar-pv-system-render.png';
+import heatPumpsDisplay from '../assets/home-products/heat-pumps-display.png';
+import upsUnitsDisplay from '../assets/home-products/ups-units-display.png';
 import invertersDisplay from '../assets/home-products/inverters-display.png';
 import batteriesDisplay from '../assets/home-products/batteries-display.png';
 import solarPanelsDisplay from '../assets/home-products/solar-panels-display.png';
@@ -222,10 +221,10 @@ const Home = () => {
   ];
 
   const products = [
-    { title: "Solar Water Heater", desc: "Cost-saving hot water solutions with reliable performance.", img: solarWaterHeaterImg, link: "/products#product-solar-water-heater" },
-    { title: "Solar Photovoltaic System", desc: "Complete solar power installations for long-term savings.", img: solarPVSystemImg, link: "/products#product-solar-pv-system" },
-    { title: "Heat Pump", desc: "Energy-efficient heating technology for all-weather use.", img: heatPumpImg, link: "/products#product-heat-pump" },
-    { title: "UPS Sales & Service", desc: "Reliable backup power solutions with expert service.", img: upsServiceImg, link: "/products#product-ups-sales-service" },
+    { title: "Solar Water Heater", desc: "Cost-saving hot water solutions with reliable performance.", img: solarWaterHeaterLineup, link: "/products#product-solar-water-heater" },
+    { title: "Solar Photovoltaic System", desc: "Complete solar power installations for long-term savings.", img: solarPVSystemRender, link: "/products#product-solar-pv-system" },
+    { title: "Heat Pump", desc: "Energy-efficient heating technology for all-weather use.", img: heatPumpsDisplay, link: "/products#product-heat-pump" },
+    { title: "UPS Sales & Service", desc: "Reliable backup power solutions with expert service.", img: upsUnitsDisplay, link: "/products#product-ups-sales-service" },
     { title: "Inverters", desc: "Smart and efficient power backup systems.", img: invertersDisplay, link: "/products#product-inverters" },
     { title: "Batteries", desc: "Long-lasting energy storage solutions.", img: batteriesDisplay, link: "/products#product-batteries" },
     { title: "Solar Panels", desc: "Clean and efficient energy generation.", img: solarPanelsDisplay, link: "/products#product-solar-panels" }
