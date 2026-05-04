@@ -71,11 +71,11 @@ const IntroAnimation = ({ onComplete }) => {
           />
 
           {/* Energy Path (Field to Logo) */}
-          <svg className="absolute w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
+          <svg className="absolute w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 10 }}>
             <motion.path
-              d="M 20% 80% Q 30% 50% 50% 50%" // Bezier from bottom-left panels to center logo
+              d="M 20 80 Q 30 50 50 50"
               fill="transparent"
-              stroke="#4ade80" // Glowing Green energy
+              stroke="#4ade80"
               strokeWidth="6"
               strokeLinecap="round"
               strokeDasharray="1000"
@@ -88,7 +88,7 @@ const IntroAnimation = ({ onComplete }) => {
               className="drop-shadow-[0_0_15px_#4ade80]"
             />
             <motion.path
-              d="M 80% 80% Q 70% 50% 50% 50%" // Secondary beam from right side
+              d="M 80 80 Q 70 50 50 50"
               fill="transparent"
               stroke="#4ade80" 
               strokeWidth="4"

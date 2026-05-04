@@ -1,6 +1,165 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+
+/* ─── Leadership Scroll Section Components ────────────────────────── */
+const CARD_HEIGHT = 600; // px — height of each "scroll step"
+
+function LeaderCard({ leader, progress, index, total }) {
+  const cardDuration = 1 / total;
+  const start = index * cardDuration;
+  const end = (index + 1) * cardDuration;
+
+  // Entrance: first 25% of its slice
+  // Exit: last 25% of its slice (except for the final card)
+  const entranceStart = start;
+  const entranceEnd = start + cardDuration * 0.25;
+  const exitStart = end - cardDuration * 0.25;
+  const exitEnd = end;
+
+  // Opacity mapping
+  const opacity = useTransform(
+    progress,
+    index === total - 1
+      ? [entranceStart, entranceEnd]
+      : [entranceStart, entranceEnd, exitStart, exitEnd],
+    index === total - 1 ? [0, 1] : [0, 1, 1, 0]
+  );
+
+  // x: slide in from left (-100px) during entrance and out to right (100px) during exit
+  const x = useTransform(
+    progress,
+    index === total - 1
+      ? [entranceStart, entranceEnd]
+      : [entranceStart, entranceEnd, exitStart, exitEnd],
+    index === total - 1 ? [-100, 0] : [-100, 0, 0, 100]
+  );
+  
+  // scale: subtle zoom in/out
+  const scale = useTransform(
+    progress,
+    index === total - 1
+      ? [entranceStart, entranceEnd]
+      : [entranceStart, entranceEnd, exitStart, exitEnd],
+    index === total - 1 ? [0.95, 1] : [0.95, 1, 1, 0.95]
+  );
+
+  // pointer-events: only active when card is mostly visible
+  const pointerEvents = useTransform(progress, (v) => 
+    v >= entranceStart && v <= exitEnd ? 'auto' : 'none'
+  );
+
+  const xSpring     = useSpring(x,     { stiffness: 100, damping: 20 });
+  const scaleSpring = useSpring(scale, { stiffness: 120, damping: 22 });
+
+  return (
+    <motion.article
+      style={{ x: xSpring, opacity, scale: scaleSpring, pointerEvents }}
+      className="absolute inset-0 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+    >
+      {/* Photo */}
+      <div className="w-full md:w-1/2 h-56 md:h-full overflow-hidden flex-shrink-0">
+        <img
+          src={leader.img}
+          alt={leader.name}
+          className="w-full h-full object-cover object-top"
+        />
+      </div>
+      {/* Info */}
+      <div className="flex flex-col justify-center p-8 md:p-12 flex-1 bg-white">
+        <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand mb-3 block">
+          {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+        </span>
+        <h3 className="font-rajdhani text-3xl md:text-4xl font-bold text-dark mb-1 leading-tight">
+          {leader.role}
+        </h3>
+        <p className="text-brand font-bold text-lg mb-5">{leader.name}</p>
+        <p className="text-gray-500 text-base leading-relaxed max-w-sm">{leader.desc}</p>
+
+        {/* Progress dots */}
+        <div className="flex gap-2 mt-10">
+          {Array.from({ length: total }).map((_, di) => (
+            <span
+              key={di}
+              className={`block h-1 rounded-full transition-all duration-500 ${
+                di === index ? 'w-8 bg-brand' : 'w-2 bg-gray-200'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function ScrollHint({ progress }) {
+  const opacity = useTransform(progress, [0, 0.1], [1, 0]);
+  return (
+    <motion.div
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-400"
+      style={{ opacity }}
+    >
+      <span className="text-xs font-bold uppercase tracking-widest">Scroll to explore</span>
+      <motion.div
+        animate={{ y: [0, 6, 0] }}
+        transition={{ repeat: Infinity, duration: 1.4 }}
+        className="w-5 h-5 text-brand"
+      >
+        ↓
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function LeadershipScrollSection({ leaders }) {
+  const sectionRef = useRef(null);
+  const total = (leaders && leaders.length) || 0;
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  if (total === 0) return null;
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{ height: `calc(100vh + ${(total - 1) * CARD_HEIGHT}px)` }}
+      className="relative bg-muted"
+    >
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden relative">
+        {/* Heading */}
+        <div className="text-center pt-16 pb-8 px-4 flex-shrink-0">
+          <p className="text-brand font-bold uppercase tracking-widest text-xs mb-2">Our Leadership Team</p>
+          <h2 className="font-rajdhani text-4xl md:text-5xl font-bold text-dark">
+            Meet The People Behind Amber Power Solutions
+          </h2>
+        </div>
+
+        {/* Card stage */}
+        <div className="flex-1 flex items-center justify-center px-4 md:px-8 pb-8">
+          <div
+            className="relative w-full max-w-4xl"
+            style={{ height: `${CARD_HEIGHT}px` }}
+          >
+            {leaders.map((leader, i) => (
+              <LeaderCard
+                key={i}
+                leader={leader}
+                progress={scrollYProgress}
+                index={i}
+                total={total}
+              />
+            ))}
+          </div>
+        </div>
+
+        <ScrollHint progress={scrollYProgress} />
+      </div>
+    </section>
+  );
+}
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -307,43 +466,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Leadership Showcase Section */}
-      <section className="py-20 md:py-32 bg-muted overflow-hidden">
-        <motion.div 
-          className="container mx-auto px-4 md:px-6 max-w-7xl"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <p className="eyebrow text-brand font-bold uppercase tracking-wider mb-2">Our Leadership Team</p>
-            <h2 className="font-rajdhani text-4xl md:text-5xl font-bold text-dark">Meet The People Behind Amber Power Solutions</h2>
-          </motion.div>
-          
-          <motion.div 
-            className="flex flex-wrap justify-center gap-8"
-            variants={staggerContainer}
-          >
-            {leaders.map((leader, i) => (
-              <motion.article 
-                key={i} 
-                className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded shadow overflow-hidden group"
-                variants={fadeInUp}
-              >
-                <div className="h-64 overflow-hidden">
-                  <img src={leader.img} alt={leader.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="font-rajdhani text-xl font-bold text-dark mb-1">{leader.role}</h3>
-                  <p className="text-brand font-bold mb-3">{leader.name}</p>
-                  <p className="text-gray-600 text-sm">{leader.desc}</p>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
-        </motion.div>
-      </section>
+      {/* Leadership Showcase Section - Scroll Reveal */}
+      <LeadershipScrollSection leaders={leaders} />
     </div>
   );
 };
