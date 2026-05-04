@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo/APS-logo.jpg';
 
 const Footer = () => {
   return (
@@ -33,7 +34,7 @@ const Footer = () => {
         <div className="col-span-1">
           <div className="flex items-center gap-3 mb-8">
             <img 
-              src="https://lavender-cod-858351.hostingersite.com/assets/images/APS-opt.jpg?v=1776868841" 
+              src={logoImg} 
               alt="APS Logo" 
               className="h-10 w-auto brightness-0 invert opacity-80"
             />

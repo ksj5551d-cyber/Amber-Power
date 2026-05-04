@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '../assets/logo/APS-logo.jpg';
 
 const IntroAnimation = ({ onComplete }) => {
   const [stage, setStage] = useState(0);
@@ -115,7 +116,7 @@ const IntroAnimation = ({ onComplete }) => {
             transition={{ duration: 1 }}
           >
             <img 
-              src="https://lavender-cod-858351.hostingersite.com/assets/images/APS-opt.jpg?v=1776868841" 
+              src={logoImg} 
               alt="APS Logo" 
               className="h-24 md:h-32 w-auto object-contain"
             />

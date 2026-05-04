@@ -2,6 +2,28 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
+// Slider Assets
+import renewableSunset from '../assets/sliders/renewable-sunset.jpg';
+import solarPanelsRooftop from '../assets/sliders/solar-panels-rooftop.jpg';
+import solarTechnicians from '../assets/sliders/solar-technicians.jpg';
+import renewableMain from '../assets/sliders/renewable-main.jpg';
+
+// Home Product Assets
+import solarWaterHeaterLineup from '../assets/home-products/solar-water-heater-lineup.png';
+import solarPVSystemRender from '../assets/home-products/solar-pv-system-render.png';
+import heatPumpsDisplay from '../assets/home-products/heat-pumps-display.png';
+import upsUnitsDisplay from '../assets/home-products/ups-units-display.png';
+import invertersDisplay from '../assets/home-products/inverters-display.png';
+import batteriesDisplay from '../assets/home-products/batteries-display.png';
+import solarPanelsDisplay from '../assets/home-products/solar-panels-display.png';
+
+// Leadership Assets
+import ownerFounder from '../assets/leadership/owner-founder.jpg';
+import director from '../assets/leadership/director.jpg';
+import technicalHead from '../assets/leadership/technical-head.jpg';
+import marketingHead from '../assets/leadership/marketing-head.jpg';
+import salesHead from '../assets/leadership/sales-head.jpg';
+
 /* ─── Leadership Scroll Section Components ────────────────────────── */
 const CARD_HEIGHT = 600; // px — height of each "scroll step"
 
@@ -165,7 +187,7 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      bg: "https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/renewable-sunset-opt.jpg?v=1776868847",
+      bg: renewableSunset,
       eyebrow: "Welcome To Amber Power Solutions",
       title: "Powering A Greener Tomorrow",
       desc: "Harness the sun with high-efficiency systems that cut costs and reduce environmental impact.",
@@ -173,7 +195,7 @@ const Home = () => {
       btn2: { text: "Get Free Consultation", link: "/contact" }
     },
     {
-      bg: "https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/solar-panels-rooftop-opt.jpg?v=1776868848",
+      bg: solarPanelsRooftop,
       eyebrow: "Solar Energy Solutions",
       title: "High-Efficiency Rooftop Solar Systems",
       desc: "Smart solar installations for homes, businesses, and institutions with long-term savings.",
@@ -181,7 +203,7 @@ const Home = () => {
       btn2: { text: "Plan Your Project", link: "/contact" }
     },
     {
-      bg: "https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/solar-technicians-opt.jpg?v=1776868848",
+      bg: solarTechnicians,
       eyebrow: "Expert Team & Execution",
       title: "Designed, Installed, And Supported By Professionals",
       desc: "From consultation to commissioning and maintenance, we deliver complete end-to-end energy solutions.",
@@ -189,7 +211,7 @@ const Home = () => {
       btn2: { text: "Our Clients", link: "/clients" }
     },
     {
-      bg: "https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/renewable-main-opt.jpg?v=1776868847",
+      bg: renewableMain,
       eyebrow: "Reliable Backup & Smart Power",
       title: "UPS, Inverters, Batteries, And Heat Pumps",
       desc: "Reliable power backup and advanced energy systems built for residential, commercial, and industrial needs.",
@@ -199,13 +221,13 @@ const Home = () => {
   ];
 
   const products = [
-    { title: "Solar Water Heater", desc: "Cost-saving hot water solutions with reliable performance.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Solar%20water%20heating%20systems%20lineup.png?v=1776868847", link: "/products#product-solar-water-heater" },
-    { title: "Solar Photovoltaic System", desc: "Complete solar power installations for long-term savings.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Solar%20power%20system%20product%20render.png?v=1776868847", link: "/products#product-solar-pv-system" },
-    { title: "Heat Pump", desc: "Energy-efficient heating technology for all-weather use.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Types%20of%20heat%20pumps%20on%20display.png?v=1776868847", link: "/products#product-heat-pump" },
-    { title: "UPS Sales & Service", desc: "Reliable backup power solutions with expert service.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Various%20UPS%20units%20on%20white%20background.png?v=1776868848", link: "/products#product-ups-sales-service" },
-    { title: "Inverters", desc: "Smart and efficient power backup systems.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Types%20of%20power%20inverters%20arranged.png?v=1776868847", link: "/products#product-inverters" },
-    { title: "Batteries", desc: "Long-lasting energy storage solutions.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Assorted%20energy%20storage%20systems%20on%20display.png?v=1776868847", link: "/products#product-batteries" },
-    { title: "Solar Panels", desc: "Clean and efficient energy generation.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/home-products/Different%20types%20of%20solar%20panels%20showcased.png?v=1776868847", link: "/products#product-solar-panels" }
+    { title: "Solar Water Heater", desc: "Cost-saving hot water solutions with reliable performance.", img: solarWaterHeaterLineup, link: "/products#product-solar-water-heater" },
+    { title: "Solar Photovoltaic System", desc: "Complete solar power installations for long-term savings.", img: solarPVSystemRender, link: "/products#product-solar-pv-system" },
+    { title: "Heat Pump", desc: "Energy-efficient heating technology for all-weather use.", img: heatPumpsDisplay, link: "/products#product-heat-pump" },
+    { title: "UPS Sales & Service", desc: "Reliable backup power solutions with expert service.", img: upsUnitsDisplay, link: "/products#product-ups-sales-service" },
+    { title: "Inverters", desc: "Smart and efficient power backup systems.", img: invertersDisplay, link: "/products#product-inverters" },
+    { title: "Batteries", desc: "Long-lasting energy storage solutions.", img: batteriesDisplay, link: "/products#product-batteries" },
+    { title: "Solar Panels", desc: "Clean and efficient energy generation.", img: solarPanelsDisplay, link: "/products#product-solar-panels" }
   ];
 
   const categories = [
@@ -213,11 +235,11 @@ const Home = () => {
   ];
 
   const leaders = [
-    { role: "Owner & Founder", name: "Arun Kumar", desc: "Driving long-term vision and strategic growth in sustainable energy solutions.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/Our-Leadership-Team/owner-founder-opt.jpg?v=1776868848" },
-    { role: "Director", name: "Kewal Singh Patial", desc: "Leading operations, execution standards, and customer-focused project delivery.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/Our-Leadership-Team/director-opt.jpg?v=1776868848" },
-    { role: "Technical Head", name: "Kuldeep Singh", desc: "Designing high-performance systems with reliability, safety, and efficiency in focus.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/Our-Leadership-Team/Technical-Head-opt.jpg?v=1776868848" },
-    { role: "Marketing Head", name: "Daman Singla", desc: "Building trusted relationships and helping customers choose the right energy solutions.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/Our-Leadership-Team/marketing-head-opt.jpg?v=1776868848" },
-    { role: "Sales Head", name: "Sailesh Raturi", desc: "Driving customer success with responsive guidance and tailored energy solutions.", img: "https://lavender-cod-858351.hostingersite.com/assets/images/Our-Leadership-Team/sales-head-opt.jpg?v=1776868848" }
+    { role: "Owner & Founder", name: "Arun Kumar", desc: "Driving long-term vision and strategic growth in sustainable energy solutions.", img: ownerFounder },
+    { role: "Director", name: "Kewal Singh Patial", desc: "Leading operations, execution standards, and customer-focused project delivery.", img: director },
+    { role: "Technical Head", name: "Kuldeep Singh", desc: "Designing high-performance systems with reliability, safety, and efficiency in focus.", img: technicalHead },
+    { role: "Marketing Head", name: "Daman Singla", desc: "Building trusted relationships and helping customers choose the right energy solutions.", img: marketingHead },
+    { role: "Sales Head", name: "Sailesh Raturi", desc: "Driving customer success with responsive guidance and tailored energy solutions.", img: salesHead }
   ];
 
   useEffect(() => {
@@ -283,7 +305,7 @@ const Home = () => {
             {/* Right: Static Banners (1/3) */}
             <div className="w-full lg:w-1/3 flex flex-col gap-6">
               <div className="flex-1 rounded-2xl overflow-hidden relative group cursor-pointer h-[180px] lg:h-auto shadow-sm">
-                <img src="https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/solar-panels-rooftop-opt.jpg?v=1776868848" alt="Banner 1" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img src={solarPanelsRooftop} alt="Banner 1" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/30 flex flex-col justify-center p-6 text-white">
                    <h3 className="text-xl font-bold font-rajdhani mb-1">Rooftop Solar</h3>
                    <p className="text-sm text-gray-200 mb-4 font-barlow">Save up to 80% on energy bills</p>
@@ -291,7 +313,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex-1 rounded-2xl overflow-hidden relative group cursor-pointer h-[180px] lg:h-auto shadow-sm">
-                <img src="https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/solar-technicians-opt.jpg?v=1776868848" alt="Banner 2" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img src={solarTechnicians} alt="Banner 2" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/30 flex flex-col justify-center p-6 text-white">
                    <h3 className="text-xl font-bold font-rajdhani mb-1">Expert Service</h3>
                    <p className="text-sm text-gray-200 mb-4 font-barlow">Professional maintenance & repairs</p>
@@ -334,10 +356,10 @@ const Home = () => {
         >
           <motion.div variants={fadeInUp} className="w-full lg:w-1/2 relative">
             <div className="relative z-10 w-[80%] rounded overflow-hidden">
-              <img src="https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/solar-panels-rooftop-opt.jpg?v=1776868848" alt="Amber Power Solutions" className="w-full h-auto" />
+              <img src={solarPanelsRooftop} alt="Amber Power Solutions" className="w-full h-auto" />
             </div>
             <div className="absolute bottom-[-10%] right-0 z-20 w-[60%] rounded overflow-hidden border-[10px] border-muted">
-              <img src="https://lavender-cod-858351.hostingersite.com/assets/images/home-sliders/renewable-sunset-opt.jpg?v=1776868847" alt="Amber Power Solutions Setup" className="w-full h-auto" />
+              <img src={renewableSunset} alt="Amber Power Solutions Setup" className="w-full h-auto" />
             </div>
           </motion.div>
           

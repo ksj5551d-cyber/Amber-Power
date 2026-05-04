@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '../assets/logo/APS-logo.jpg';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,7 +56,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0 group">
             <img 
-              src="https://lavender-cod-858351.hostingersite.com/assets/images/APS-opt.jpg?v=1776868841" 
+              src={logoImg} 
               alt="APS Logo" 
               className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
