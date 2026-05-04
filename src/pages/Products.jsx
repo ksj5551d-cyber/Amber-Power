@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 // Import images for reliable path resolution on Vercel
-import solarWaterHeaterImg from '/images/products/solar_water_heater.png';
-import solarPVSystemImg from '/images/products/solar_pv_system.png';
-import heatPumpImg from '/images/products/heat_pump.png';
-import upsServiceImg from '/images/products/ups_service.png';
+import solarWaterHeaterImg from '../assets/products/solar_water_heater.png';
+import solarPVSystemImg from '../assets/products/solar_pv_system.png';
+import heatPumpImg from '../assets/products/heat_pump.png';
+import upsServiceImg from '../assets/products/ups_service.png';
 
 const Products = () => {
   const products = [
